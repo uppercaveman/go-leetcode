@@ -21,7 +21,7 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 	}
 	caseNum := 5
 	for i := 0; i < caseNum; i++ {
-		if ret := lengthOfLongestSubstring(tests[i]); ret != results[i] {
+		if ret := lengthOfLongestSubstring2(tests[i]); ret != results[i] {
 			t.Fatalf("case %d failed\nactual: %d, expect: %d\n", i, ret, results[i])
 		}
 	}
