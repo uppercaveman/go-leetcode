@@ -11,6 +11,9 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 		"abcde",
 		"",
 		"pwwkew",
+		"wpwwwwdcawwxyzk",
+		"wpwwwpwpwp",
+		"wpwwwwwwpsdwd",
 	}
 	results := []int{
 		3,
@@ -18,10 +21,13 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 		5,
 		0,
 		3,
+		5,
+		2,
+		4,
 	}
-	caseNum := 5
-	for i := 0; i < caseNum; i++ {
-		if ret := lengthOfLongestSubstring2(tests[i]); ret != results[i] {
+
+	for i := 0; i < len(results); i++ {
+		if ret := lengthOfLongestSubstring(tests[i]); ret != results[i] {
 			t.Fatalf("case %d failed\nactual: %d, expect: %d\n", i, ret, results[i])
 		}
 	}

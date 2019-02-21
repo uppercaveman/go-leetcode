@@ -2,22 +2,21 @@ package longest_substring_without_repeating_characters
 
 func lengthOfLongestSubstring(s string) int {
 	runeMap := make(map[rune]int)
-	longest := 0
+	maxLength := 0
 	preLength := 0
-	for i, v := range s {
-		var length int
-		if val, ok := runeMap[v]; !ok || val < i-preLength {
-			length = preLength + 1
+	for k, v := range s {
+		if val, ok := runeMap[v]; !ok || val < k-preLength {
+			preLength++
 		} else {
-			length = i - val
+			preLength = k - val
 		}
-		if length > longest {
-			longest = length
+		if preLength > maxLength {
+			maxLength = preLength
 		}
-		preLength = length
-		runeMap[v] = i
+
+		runeMap[v] = k
 	}
-	return longest
+	return maxLength
 }
 
 func lengthOfLongestSubstring2(s string) int {
@@ -26,7 +25,7 @@ func lengthOfLongestSubstring2(s string) int {
 	currentLength := 0
 	previousDuplicatedIndex := 0
 
-	for i, v := range s {
+	for k, v := range s {
 
 		newDuplicatedIndex := m[v]
 
@@ -41,7 +40,7 @@ func lengthOfLongestSubstring2(s string) int {
 			maxLength = currentLength
 		}
 
-		m[v] = i + 1
+		m[v] = k + 1
 	}
 
 	return maxLength
