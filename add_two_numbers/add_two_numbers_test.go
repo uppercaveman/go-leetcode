@@ -1,6 +1,7 @@
 package add_two_numbers
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -23,7 +24,7 @@ func TestAddTwoNumbers(t *testing.T) {
 	caseNum := 3
 	for i := 0; i < caseNum; i++ {
 		l, r := generateNodeList(left[i]), generateNodeList(right[i])
-		if ret := addTwoNumbers(l, r); !equal(ret, generateNodeList(results[i])) {
+		if ret := addTwoNumbers2(l, r); !equal(ret, generateNodeList(results[i])) {
 			t.Fatalf("case %d fails: %v\n", i, ret.Val)
 		}
 	}
@@ -48,12 +49,14 @@ func generateNodeList(list []int) *ListNode {
 func equal(left, right *ListNode) bool {
 	tmp1, tmp2 := left, right
 	for tmp1 != nil && tmp2 != nil {
+		fmt.Printf("%d,%d \n", tmp1.Val, tmp2.Val)
 		if tmp1.Val != tmp2.Val {
 			return false
 		}
 		tmp1, tmp2 = tmp1.Next, tmp2.Next
 	}
 	if tmp1 != nil || tmp2 != nil {
+		fmt.Printf("%v,%v \n", tmp1, tmp2)
 		return false
 	}
 	return true
